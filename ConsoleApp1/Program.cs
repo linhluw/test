@@ -21,7 +21,9 @@ namespace ConsoleApp1
 
             //Catch GetInitOnlineVehicleListByCode Invalid json object: [{ "XNCode":45139,"VehiclePlate":"67A16682"}]
             obj.Add(new VehicleInfoRequest { XNCode = 45139, VehiclePlate = "67A16682" });
-
+            obj.Add(new VehicleInfoRequest { XNCode = 45030, VehiclePlate = "29B40920_C" });
+            obj.Add(new VehicleInfoRequest { XNCode = 45139, VehiclePlate = "93H01311" });
+            obj.Add(new VehicleInfoRequest { XNCode = 45181, VehiclePlate = "88C20158" });
 
             var json = JsonConvert.SerializeObject(obj);
 
