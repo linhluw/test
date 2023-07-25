@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+option csharp_namespace = "BA_GPS_Server.VehicleOnlineGRPC";
+
+package vehicle;
+
+service VehicleGRPC {
+	rpc GetOnline(VehicleGRPCRequest) returns (VehicleGRPCReply) {}
+	rpc GetDetailOnline(VehicleGRPCRequest) returns (VehicleDetailGRPCReply) {}
+}
+
+message VehicleGRPCRequest {
+	int32 companyID = 1;
+	int32 xnCode = 2;
+	string userID = 3;
+	int32 userType = 4;
+	int32 companyType = 5;
+	string vehiclePlate = 6;
+}
+
+message VehicleGRPCReply{
+	repeated VehicleGRPCOnline vehicleOnline = 1;
+}
+message VehicleGRPCOnline{
+	int64 VehicleID = 1;
+	string VehiclePlate = 2;
+	double Latitude =  3;
+	double Longitude = 4;
+	int32 State = 5;
+	int32 VelocityGPS = 6;
+	google.protobuf.Timestamp GPSTime = 7;
+	google.protobuf.Timestamp VehicleTime = 8;
+	int32 IconCode = 9;
+	string PrivateCode = 10;
+	int32 MessageIdBAP = 11;
+	string AryGroupID = 12;
+	bool IsEnableAcc = 13;
+	string CurrentAddress = 14;
+	int32 DataExt = 15;
+	double TotalKm = 16;
+	google.protobuf.Timestamp MaturityDate = 17; 
+	int32 Direction = 18; 
+	string PackageName = 19;
+	string PackageSmsName = 20;
+	int32 AvailableSmsBlock = 21;
+	google.protobuf.Timestamp AvailableSmsDate = 22;
+	int32 StopTime = 23;
+	int32 KindID = 24;
+	string MessageBAP = 25;
+	string MessageDetailBAP = 26;
+	bool DeclaredBGT = 27;
+	string DriverName = 28;
+	string DriverLicense =29;
+}
+
+message VehicleDetailGRPCReply {
+	repeated VehicleDetailGRPCOnline vehicleDetailOnline = 1;
+	repeated VehicleHTN ExtTransport = 2;
+	repeated VehicleNL Fuel = 3;
+	repeated VehicleTemperature Temperature = 4;
+	repeated VehicleOnlineExtend OnlineExtend = 5;
+}
+
+message VehicleDetailGRPCOnline{
+	int64 VehicleID = 1;
+	string VehiclePlate = 2;
+	double Latitude =  3;
+	double Longitude = 4;
+	int32 VehiceState = 5;
+	int32 VelocityGPS = 6;
+	int32 VelocityMechanical = 7;
+	google.protobuf.Timestamp GPSTime = 8;
+	google.protobuf.Timestamp VehicleTime = 9;
+	int32 IconCode = 10;
+	string PrivateCode = 11;
+	string GroupNames = 12;
+	bool AccStatus = 13;
+	double TotalKm = 14;
+	int32 StopTime = 15;
+	int32 KindID = 16;
+	string FeeMessage = 17;
+	string FeeMessageDetail = 18;
+	google.protobuf.Timestamp MCExpried = 19; 
+	int32 StopCount = 20;
+	bool AirCondition = 21;
+	bool Concrete = 22;
+	bool Door = 23;
+}
+
+message VehicleHTN{
+	string DriverName = 1; 
+	string DriverLicense = 2;
+	google.protobuf.Timestamp ExpireLicenseDate = 3;
+	string ExpireLicenseDateString = 4;
+	string MobileNumber = 5;
+	int32 SpeedOverCount = 6;
+	int32 MinutesOfDrivingTimeContinuous = 7;
+	int32 MinutesOfDrivingTimeInDay = 8;
+	string MemoryStatusLabel = 9;
+	string DepartmentName = 10;
+}
+
+message VehicleNL{
+	bool IsUseFuel = 1; 
+	double NumberOfLiters = 2;
+	double Capacity = 3;
+}
+
+message VehicleTemperature{
+	double Temperature = 1; 
+	double Temperature2 = 2;
+}
+
+message VehicleOnlineExtend{
+	int32 MinuteMachineOn = 1; 
+	int32 MinuteStopOfManchineOn = 2;
+	string DisplayGpsTime = 3;
+	double AccumulateKmGps = 4;
+	double AccumulateKmMechanical = 5;
+	string StopTime = 6;
+}
